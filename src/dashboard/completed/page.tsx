@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { getCompletedReviews } from "@/lib/supabase";
-import { Review, Project } from "@/lib/supabase";
+import { getCompletedReviews } from "../../lib/supabase";
+import { Review, Project } from "../../lib/supabase";
 
 export default function CompletedReviewsPage() {
   const [reviews, setReviews] = useState<(Review & { projects: Project[] })[]>(
