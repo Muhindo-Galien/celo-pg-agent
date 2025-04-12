@@ -477,6 +477,7 @@ export default function ReviewPage() {
                       <div className="flex items-center gap-4">
                         <div className="text-sm text-gray-400">
                           AI Score:{" "}
+                          {/* @ts-expect-error */}
                           {project.analysis?.analysis?.code_quality
                             ?.overall_score || "N/A"}
                         </div>
