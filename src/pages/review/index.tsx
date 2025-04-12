@@ -203,7 +203,6 @@ export default function ReviewPage() {
         }
       }
 
-
       toast.success("Review submitted successfully!");
 
       // Clear localStorage and reset state
@@ -227,7 +226,7 @@ export default function ReviewPage() {
   };
 
   const allScoresFilled = projects.every(
-    (project) => project.human_score !== null
+    (project) => project.human_score !== null && project.human_score > 0
   );
 
   // Define the handleEditClick function
@@ -476,8 +475,7 @@ export default function ReviewPage() {
                     <div className="flex flex-col items-start">
                       <div className="flex items-center gap-4">
                         <div className="text-sm text-gray-400">
-                          AI Score:{" "}
-                          {/* @ts-expect-error */}
+                          AI Score: {/* @ts-expect-error */}
                           {project.analysis?.analysis?.code_quality
                             ?.overall_score || "N/A"}
                         </div>
@@ -560,7 +558,9 @@ export default function ReviewPage() {
                   disabled={!allScoresFilled || isEditing}
                   className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-800 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Submit Review
+                  {!allScoresFilled
+                    ? "Score all projects (min: 1)"
+                    : "Submit Review"}
                 </button>
               </div>
             </div>
